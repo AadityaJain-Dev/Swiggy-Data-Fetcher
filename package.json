@@ -1,0 +1,30 @@
+{
+  "name": "swiggy-data-fetcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AadityaJain-Dev/Swiggy-Data-Fetcher.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Aditya Jain",
+    "email": "hey@aadityajain.dev",
+    "url": "https://www.aadityajain.dev/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AadityaJain-Dev/Swiggy-Data-Fetcher/issues"
+  },
+  "homepage": "https://github.com/AadityaJain-Dev/Swiggy-Data-Fetcher#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security"
+  }
+}
