@@ -33,10 +33,7 @@ exports.getRestaurantData = async (restaurantURL) => {
       .text()
       .split('=');
 
-    tempData = ` ${tempData[2]} = ${tempData[3]} + ${tempData[4]}`.replace(
-      ';   window.webpackManifest ',
-      '',
-    );
+    tempData = tempData[2].replace(';   window.webpackManifest ', '');
 
     tempData = JSON.parse(tempData).menu;
 
