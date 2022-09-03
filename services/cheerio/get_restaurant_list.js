@@ -51,6 +51,18 @@ const extractData = async (cityURL, pageNumber = 1) => {
   }
 
   extractedData.restaurantCards = tempData.cityRestaurantData.cards;
+
+  // extract anchor tag from HTML
+  const restaurantsContainer = $('#restaurants_container div>a');
+  const anchorTags = [];
+  restaurantsContainer.each(function () {
+    const hrefValue = $(this).attr('href');
+    if (hrefValue && hrefValue.includes('/restaurants/')) {
+      anchorTags.push(`https://www.swiggy.com${hrefValue}`);
+    }
+  });
+
+  extractedData.restaurantUrls = anchorTags;
   return extractedData;
 };
 
@@ -71,6 +83,7 @@ exports.getRestaurantListData = async (cityURL) => {
     const initialFetch = await extractData(cityURL);
     compiledRestaurantsList.totalPages = initialFetch.totalPages;
     compiledRestaurantsList.restaurantCards = [...initialFetch.restaurantCards];
+    compiledRestaurantsList.restaurantUrls = [...initialFetch.restaurantUrls];
     for (
       let pageNumber = 2;
       pageNumber <= initialFetch.totalPages;
@@ -81,12 +94,16 @@ exports.getRestaurantListData = async (cityURL) => {
         ...compiledRestaurantsList.restaurantCards,
         ...getCityData.restaurantCards,
       ];
+      compiledRestaurantsList.restaurantUrls = [
+        ...compiledRestaurantsList.restaurantUrls,
+        ...getCityData.restaurantUrls,
+      ];
     }
 
     return compiledRestaurantsList;
   } catch (error) {
     console.error(
-      `Stuff went wrong with getRestaurantListData, error:', error: ${error}`,
+      `Stuff went wrong with getRestaurantListData, error: ${error}`,
     );
   }
 };
